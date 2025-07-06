@@ -95,7 +95,7 @@ All todos are stored in a local JSON file. Example `todos.json` content|
 
 ```
 
-~/.config/             # Storage
+~/.config/todo         # Storage
 └── todos.json
 ```
 
