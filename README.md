@@ -31,6 +31,12 @@ A simple, fast, and minimal command-line Todo application written in Go using th
    sudo mv todo /usr/local/bin/
    ```
 
+4. **(Optional) Install locally:**
+
+   ```bash
+   sudo mv todo $HOME/.local/bin/
+   ```
+
 ## 🛠 Usage
 
 ```bash
@@ -85,6 +91,12 @@ All todos are stored in a local JSON file. Example `todos.json` content|
 ├── internal/          # Core logic and utilities
 ├── main.go
 └── README.md
+```
+
+```
+
+~/.config/             # Storage
+└── todos.json
 ```
 
 ## 🔧 Dependencies
