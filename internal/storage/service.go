@@ -80,7 +80,7 @@ func DeleteTodo(id int) error {
 	}
 
 	if !found {
-		return errors.New("Cant find todo")
+		return errors.New("Can't find todo")
 	}
 
 	return SaveTodos(updateTodo)

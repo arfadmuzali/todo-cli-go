@@ -22,7 +22,7 @@ You can delete a specific item by ID, or all items at once.
 Examples:
   app delete 1      # Delete item with ID 1
   app delete --all  # Delete all items`,
-	Args: cobra.MaximumNArgs(1),
+	Args: cobra.MinimumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		var err error
 		if All {
@@ -34,24 +34,26 @@ Examples:
 			return
 		}
 
-		if len(args) == 0 {
-			fmt.Println(fmt.Errorf("Failed to delete a todo: Argument ID not found"))
-			return
+		var successCount int
+		for _, value := range args {
+			id, err := strconv.Atoi(value)
+			if err != nil {
+				fmt.Println(fmt.Errorf("Failed to delete todo %v: Argument Must be a number", value))
+				continue
+			}
+
+			if err = storage.DeleteTodo(id); err != nil {
+				fmt.Println(fmt.Errorf("Failed to delete todo %v: %w", value, err))
+				continue
+			}
+
+			successCount += 1
 
 		}
 
-		id, err := strconv.Atoi(args[0])
-		if err != nil {
-			fmt.Println(fmt.Errorf("Failed to delete a todo: Argument ID must be a number"))
-			return
+		if successCount != 0 {
+			fmt.Println("ok")
 		}
-
-		if err = storage.DeleteTodo(id); err != nil {
-			fmt.Println(err)
-			return
-		}
-
-		fmt.Println("ok")
 	},
 }
 
