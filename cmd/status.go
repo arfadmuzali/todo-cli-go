@@ -12,18 +12,18 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// toggleCmd represents the toggle command
-var toggleCmd = &cobra.Command{
-	Use:   "toggle [id1] [id2] ...",
+// statusCmd represents the status command
+var statusCmd = &cobra.Command{
+	Use:   "status [id1] [id2] ...",
 	Args:  cobra.MinimumNArgs(1),
 	Short: "Toggle the status of one or more todo items",
-	Long: `The toggle command switches the status of one or more todo items between done and not done.
+	Long: `The Status command switches the status of one or more todo items between done and not done.
 
 You can pass one or multiple IDs separated by spaces. Each item's status will be flipped.
 
 Examples:
-  todoapp toggle 1           # Toggle a single item
-  todoapp toggle 2 3 5 8     # Toggle multiple items
+  todo status 1           # Toggle a single item
+  todo status 2 3 5 8     # Toggle multiple items
 
 This is useful for marking tasks as completed or incomplete quickly, especially in bulk.`,
 	Run: func(cmd *cobra.Command, args []string) {
@@ -49,15 +49,5 @@ This is useful for marking tasks as completed or incomplete quickly, especially 
 }
 
 func init() {
-	rootCmd.AddCommand(toggleCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// toggleCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// toggleCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	rootCmd.AddCommand(statusCmd)
 }

@@ -23,7 +23,7 @@ Examples:
   todo add "Learn Golang"
   todo list
   todo update 1 "Finish Cobra integration"
-  todo toggle 1
+  todo status 1
   todo delete 1 2
 `,
 	// Uncomment the following line if your bare application
