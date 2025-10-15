@@ -1,4 +1,4 @@
-module todo
+module github.com/arfadmuzali/todo-cli-go
 
 go 1.24.4
 

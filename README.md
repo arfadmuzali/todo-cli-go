@@ -12,6 +12,14 @@ A simple, fast, and minimal command-line Todo application written in Go using th
 
 ## 📦 Installation
 
+Make sure your Go version is up to date
+
+   ```bash
+   go install github.com/arfadmuzali/todo-cli-go
+   ```
+
+## 📦 Manual Installation
+
 1. **Clone the repository:**
 
    ```bash
