@@ -5,9 +5,9 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/arfadmuzali/todo-cli-go/internal/storage"
 	"strconv"
 	"strings"
-	"todo/internal/storage"
 
 	"github.com/spf13/cobra"
 )

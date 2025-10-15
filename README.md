@@ -15,7 +15,7 @@ A simple, fast, and minimal command-line Todo application written in Go using th
 Make sure your Go version is up to date
 
    ```bash
-   go install github.com/arfadmuzali/todo-cli-go
+   go install github.com/arfadmuzali/todo-cli-go@v1.0.0
    ```
 
 ## 📦 Manual Installation
@@ -59,7 +59,7 @@ todo [command] [arguments]
 | `todo add "Task content"`     | Add a new todo item                        |
 | `todo delete [id1] [id2]...`  | Delete one or more todos by ID             |
 | `todo update [id] "New task"` | Update the content of a todo item by ID    |
-| `todo toggle [id1] [id2]...`  | Toggle todo status (done <--> not done)    |
+| `todo status [id1] [id2]...`  | Toggle todo status (done <--> not done)    |
 
 ### 🧪 Example Usage
 
@@ -68,7 +68,7 @@ todo add "Learn Golang"
 todo add "Buy milk"
 todo list
 todo update 1 "Learn Golang with Cobra"
-todo toggle 1 2
+todo status 1 2
 todo delete 2
 ```
 
@@ -106,36 +106,34 @@ All todos are stored in a local JSON file. Example `todos.json` content|
 ~/.config/todo         # Storage
 └── todos.json
 ```
+## 🐧 Tips for Linux (i use arch btw)
 
-## 🔧 Dependencies
+If you want your todo list to show automatically at startup, you can create a simple script like this:
 
-- [Cobra](https://github.com/spf13/cobra)
+   ```bash
+#!/bin/bash
 
-Install with:
+# File location
+FILE="$HOME/.config/todo/todos.json"
 
-```bash
-go get github.com/spf13/cobra
-```
+# Check if the file exists
+if [[ ! -f "$FILE" ]]; then
+  echo "File $FILE not found."
+  exit 1
+fi
 
-- [TableWriter](github.com/olekukonko/tablewriter)
+# Extract all descriptions from the todo file
+descriptions=$(jq -r '.[].Description' "$FILE")
 
-Install with:
+# Exit if there are no todos
+if [[ -z "$descriptions" ]]; then
+  exit 0
+fi
 
-```bash
-go get github.com/olekukonko/tablewriter
-```
+# Send a notification for each todo
+while IFS= read -r desc; do
+  notify-send "Todo" "$desc"
+done <<< "$descriptions"
 
-## ✍️ Contribution
+   ```
 
-Pull requests and suggestions are very welcome! Feel free to fork and add new features such as:
-
-- Priorities or deadlines
-- Categories/tags
-- Filtering and searching
-- Storage using SQLite or other databases
-
----
-
-## 📣 Final Notes
-
-This app is great for terminal lovers who want a fast and lightweight todo manager.

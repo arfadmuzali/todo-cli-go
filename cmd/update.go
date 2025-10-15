@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"strconv"
 	// "strings"
-	"todo/internal/storage"
+	"github.com/arfadmuzali/todo-cli-go/internal/storage"
 
 	"github.com/spf13/cobra"
 )

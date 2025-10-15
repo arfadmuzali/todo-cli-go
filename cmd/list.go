@@ -2,8 +2,8 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/arfadmuzali/todo-cli-go/internal/storage"
 	"os"
-	"todo/internal/storage"
 
 	"github.com/olekukonko/tablewriter"
 	"github.com/spf13/cobra"
