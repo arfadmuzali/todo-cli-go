@@ -12,7 +12,7 @@ import (
 // listCmd represents the list command
 var listCmd = &cobra.Command{
 	Use:   "list",
-	Short: "Display all your todo items",
+	Short: "Display all your todo items (default command)",
 	Long: `The list command shows all the todo items currently saved.
 
 It displays each item with its ID, content, and possibly status (e.g., done or not).

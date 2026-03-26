@@ -4,8 +4,11 @@ Copyright © 2025 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
+	"fmt"
 	"os"
 
+	"github.com/arfadmuzali/todo-cli-go/internal/storage"
+	"github.com/olekukonko/tablewriter"
 	"github.com/spf13/cobra"
 )
 
@@ -28,7 +31,22 @@ Examples:
 `,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
-	// Run: func(cmd *cobra.Command, args []string) { },
+	Run: func(cmd *cobra.Command, args []string) {
+
+		todos, err := storage.LoadTodos()
+
+		if err != nil {
+			fmt.Println(fmt.Errorf("Failed to load todos : %w", err))
+			return
+		}
+
+		table := tablewriter.NewTable(os.Stdout)
+		table.Header("ID", "Description", "Status", "Created At")
+		for _, value := range todos {
+			table.Append(value.Id, value.Description, value.Status, value.CreatedAt.Format("02 Jan 15:04"))
+		}
+		table.Render()
+	},
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
